@@ -106,10 +106,6 @@ public class SetColorMaterial : MonoBehaviour
         {
             UpdateTargetCloaks(IsActive);
         }
-        else
-        {
-
-        }
     }
 
 
@@ -285,6 +281,15 @@ public class SetColorMaterial : MonoBehaviour
             return;
 
         targetCloak = goActive ? targetCloak - velocity * Time.deltaTime : targetCloak + velocity * Time.deltaTime;
+        if (goActive && targetCloak < 0)
+        {
+            targetCloak = 0f;
+        }
+        if (!goActive && targetCloak > 1)
+        {
+            targetCloak = 1f;
+        }
+
         SetTargetCloak();
         SetTargetCloaks();
     }
